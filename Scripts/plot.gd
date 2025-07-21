@@ -40,6 +40,15 @@ func advance_growth_phase():
     if current_growth_phase < Global.GrowthPhase.MATURE:
         current_growth_phase += 1
         update_sprite()
+        
+        # ---- ADD THIS BLOCK ----
+        # Check if the crop resource has any facts defined.
+        if planted_crop and not planted_crop.crop_facts.is_empty():
+            # Pick one of the facts at random from the array.
+            var random_fact = planted_crop.crop_facts.pick_random()
+            # Tell the global EventBus to emit the signal with the chosen fact.
+            EventBus.fact_unlocked.emit(random_fact)
+        # ------------------------
 
 
 func is_harvestable() -> bool:

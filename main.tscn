@@ -1,6 +1,7 @@
-[gd_scene load_steps=31 format=4 uid="uid://da27ex7k2w7sq"]
+[gd_scene load_steps=33 format=4 uid="uid://da27ex7k2w7sq"]
 
 [ext_resource type="Script" uid="uid://1qvdpbm4mnot" path="res://Scripts/player_controller.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://dmti2hr0giadr" path="res://main.gd" id="1_074og"]
 [ext_resource type="Script" uid="uid://cht6rb6jnr1tn" path="res://Scripts/world_clock.gd" id="1_efxa6"]
 [ext_resource type="TileSet" uid="uid://u02r6tjip44r" path="res://Resources/terrain.tres" id="1_h2yge"]
 [ext_resource type="Script" uid="uid://dsdd1mcda4vaa" path="res://Scripts/terrain.gd" id="2_7mycd"]
@@ -16,6 +17,7 @@
 [ext_resource type="Resource" uid="uid://dwr6g4kl63448" path="res://Resources/player_inventory.tres" id="10_dg77c"]
 [ext_resource type="Script" uid="uid://dic46ofoe7e2v" path="res://Scripts/inventory_gui.gd" id="13_w48qg"]
 [ext_resource type="Script" uid="uid://cr4qggdim6rxr" path="res://Scripts/loot_range.gd" id="15_vivmo"]
+[ext_resource type="PackedScene" uid="uid://db7w063yisl1l" path="res://fact_popup.tscn" id="18_cegan"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_1bvp3"]
 a = Vector2(-6, 0)
@@ -26,14 +28,6 @@ b = Vector2(6, 0)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1bvp3"]
 radius = 4.0
 height = 14.0
-
-[sub_resource type="SystemFont" id="SystemFont_5vw27"]
-font_names = PackedStringArray("Daydream")
-oversampling = 10.0
-
-[sub_resource type="LabelSettings" id="LabelSettings_kek77"]
-font = SubResource("SystemFont_5vw27")
-font_color = Color(0.1812, 0.1812, 0.1812, 1)
 
 [sub_resource type="Animation" id="Animation_kek77"]
 length = 0.001
@@ -137,8 +131,17 @@ radius = 32.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_vivmo"]
 radius = 7.16001
 
+[sub_resource type="SystemFont" id="SystemFont_5vw27"]
+font_names = PackedStringArray("Daydream")
+oversampling = 10.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_kek77"]
+font = SubResource("SystemFont_5vw27")
+font_color = Color(0.1812, 0.1812, 0.1812, 1)
+
 [node name="Node2D" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_074og")
 
 [node name="WorldClock" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -225,29 +228,6 @@ shape = SubResource("CapsuleShape2D_1bvp3")
 z_index = 10
 zoom = Vector2(4, 4)
 
-[node name="ClockGUI" type="Label" parent="Player/Camera2D"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 96.209
-offset_top = -71.0
-offset_right = 216.209
-offset_bottom = -26.0
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(0.280001, 0.280001)
-size_flags_horizontal = 8
-size_flags_vertical = 8
-text = "Day: 0
-Hour: 0"
-label_settings = SubResource("LabelSettings_kek77")
-horizontal_alignment = 2
-script = ExtResource("8_kek77")
-template_string = "Day: %s
-Hour: %s"
-
 [node name="Inventory" type="GridContainer" parent="Player/Camera2D" node_paths=PackedStringArray("player")]
 anchors_preset = 7
 anchor_left = 0.5
@@ -293,3 +273,35 @@ shape = SubResource("CircleShape2D_w48qg")
 [node name="PickupRange" type="CollisionShape2D" parent="Player/LootRange"]
 shape = SubResource("CircleShape2D_vivmo")
 debug_color = Color(0.276782, 0.631831, 9.62615e-07, 0.42)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ClockGUI" type="Label" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -358.192
+offset_top = -744.451
+offset_right = -238.192
+offset_bottom = -695.451
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.280001, 0.280001)
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Day: 0
+Hour: 0"
+label_settings = SubResource("LabelSettings_kek77")
+horizontal_alignment = 2
+script = ExtResource("8_kek77")
+template_string = "Day: %s
+Hour: %s"
+
+[node name="FactPopup" parent="CanvasLayer" instance=ExtResource("18_cegan")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5

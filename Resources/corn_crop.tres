@@ -17,6 +17,7 @@ metadata/_custom_type_script = "uid://dw28jt47ta8vl"
 script = ExtResource("1_ywu7n")
 harvest = ExtResource("1_bu74v")
 texture_resource = SubResource("Resource_gtqsd")
+crop_facts = Array[String](["Corn is a thirsty crop that requires a lot of water, especially during the critical period about two weeks before the silks form.", "Corn is technically a type of grass.", "The U.S. produces about one-third of the world's corn.", "Corn is used in many non-food products, including ethanol, plastics, and adhesives.", "An ear of corn averages 800 kernels in 16 rows.", "Corn will always have an even number of rows on each cob."])
 germination_duration = 0.5
 budding_duration = 0.5
 flowering_duration = 0.5

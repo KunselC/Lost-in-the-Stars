@@ -3,6 +3,7 @@ extends Resource
 
 @export var harvest: Item
 @export var texture_resource: MappedTexture
+@export var crop_facts: Array[String]
 
 @export_group("Germination Phase", "germination_")
 @export_range(.5, 4, .5, "suffix:days") var germination_duration := 0.5
