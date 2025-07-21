@@ -1,17 +1,15 @@
 extends Area2D
 
-@export var player: Player
-@export var attraction_range: CollisionShape2D
-@export var pickup_range: CollisionShape2D
+@onready var player: Player = get_parent()
 
-func _init():
-	connect(&'body_shape_entered', handle_body_shape_entered)
-
-func handle_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int):
-	print('body_shape_entered\n[%s]' % body.name)
+func _on_body_entered(body: Node2D):
+	# MODIFIED: Only interact with LootableItem nodes.
 	if body is LootableItem:
-		if local_shape_index == attraction_range.get_index():
-			body.stop_animations()
-		if local_shape_index == pickup_range.get_index():
-			player.inventory.add_item(body.item)
-			body.queue_free()
+		if player.has_method("stop_animations"):
+			player.stop_animations()
+
+func _on_body_exited(body: Node2D):
+	# MODIFIED: Only interact with LootableItem nodes.
+	if body is LootableItem:
+		if player.has_method("start_animations"):
+			player.start_animations()

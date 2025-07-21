@@ -3,37 +3,39 @@ extends StaticBody2D
 
 @export var sprite: Sprite2D
 
-# This will hold the unique instance of the crop planted here. It starts as null.
 var planted_crop: Crop 
-# This variable will hold the current growth phase for the crop in this plot.
 var current_growth_phase: Global.GrowthPhase
-
 var is_planted: bool = false
 
-# For testing, we can assign a crop resource in the editor to plant on click.
-@export var test_seed_to_plant: Crop
-
+# REMOVED: The test_seed_to_plant variable is no longer needed.
 
 func _ready():
     %WorldClock.clock_progress.connect(handle_hourly_growth)
-    update_sprite() # Initially show an empty plot
+    update_sprite()
 
 
 func handle_hourly_growth(day, hour):	
     if is_planted and not is_harvestable():
-        # This simple logic advances the phase every 12 hours.
-        # You can later expand this to use the duration properties from your Crop resource.
-        if hour % 12 == 0:
+        if hour > 0 and hour % 12 == 0:
             advance_growth_phase()
 
-
-func plant(seed_resource: Crop):
-    if not is_planted and seed_resource != null:
-        # Duplicate the resource to create a unique instance for this plot
-        planted_crop = seed_resource.duplicate()
+# MODIFIED: The plant function now accepts an Item resource.
+func plant(seed_item: Item):
+    # Check if the plot is empty and if the provided item is a valid seed.
+    if not is_planted and seed_item and seed_item.seed_grows_into:
+        # Get the Crop resource from the seed item's 'seed_grows_into' property.
+        var crop_to_plant = seed_item.seed_grows_into
+        
+        planted_crop = crop_to_plant.duplicate()
         is_planted = true
         current_growth_phase = Global.GrowthPhase.GERMINATING
         update_sprite()
+        
+        # Return true to indicate planting was successful.
+        return true
+    
+    # Return false if planting failed (e.g., plot was not empty or item was not a seed).
+    return false
 
 
 func advance_growth_phase():
@@ -41,14 +43,9 @@ func advance_growth_phase():
         current_growth_phase += 1
         update_sprite()
         
-        # ---- ADD THIS BLOCK ----
-        # Check if the crop resource has any facts defined.
         if planted_crop and not planted_crop.crop_facts.is_empty():
-            # Pick one of the facts at random from the array.
             var random_fact = planted_crop.crop_facts.pick_random()
-            # Tell the global EventBus to emit the signal with the chosen fact.
             EventBus.fact_unlocked.emit(random_fact)
-        # ------------------------
 
 
 func is_harvestable() -> bool:
@@ -59,18 +56,22 @@ func update_sprite():
     if is_planted:
         sprite.texture = planted_crop.get_texture_for_phase(current_growth_phase)
     else:
-        # When not planted, the plot is empty.
         sprite.texture = null
 
-
+# MODIFIED: This function now completes the planting interaction.
 func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int):
     if Focus.event_is_action_pressed(event, &"select"):
         if is_harvestable():
             harvest()
             Input.set_custom_mouse_cursor(Global.RESOURCES.CURSOR.DEFAULT)
         elif not is_planted:
-            # If the plot is empty, plant our test seed.
-            plant(test_seed_to_plant)
+            # Find the player node.
+            var player: Player = get_tree().get_first_node_in_group("player")
+            if player and player.equipped_item:
+                # Attempt to plant the player's equipped item.
+                if plant(player.equipped_item):
+                    # If planting was successful, remove one item from the inventory.
+                    player.inventory.remove_item(player.equipped_item)
 
 
 func harvest():
@@ -80,7 +81,6 @@ func harvest():
         loot.position = position
         get_parent().add_child(loot)
         
-        # CRITICAL CHANGE: Reset the plot instead of deleting it.
         is_planted = false
         planted_crop = null
         update_sprite()

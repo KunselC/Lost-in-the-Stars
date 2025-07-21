@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://da27ex7k2w7sq"]
+[gd_scene load_steps=31 format=4 uid="uid://da27ex7k2w7sq"]
 
 [ext_resource type="Script" uid="uid://1qvdpbm4mnot" path="res://Scripts/player_controller.gd" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://dmti2hr0giadr" path="res://main.gd" id="1_074og"]
@@ -10,10 +10,8 @@
 [ext_resource type="SpriteFrames" uid="uid://bu8iuqeafs7gr" path="res://Resources/door.tres" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://dxcgi2e3wt0vp" path="res://Scripts/door.gd" id="4_lquwl"]
 [ext_resource type="Script" uid="uid://bekfh6knoom33" path="res://Scripts/plot.gd" id="7_4c57u"]
-[ext_resource type="Resource" uid="uid://bj5o26048hbxw" path="res://Resources/corn_crop.tres" id="8_efxa6"]
 [ext_resource type="Script" uid="uid://urrmdpkqoa5w" path="res://Scripts/clock_gui.gd" id="8_kek77"]
 [ext_resource type="PackedScene" uid="uid://dnu855bfccv2r" path="res://Scenes/lootable_item.tscn" id="9_vivmo"]
-[ext_resource type="Resource" uid="uid://dntq8whvbow6p" path="res://Resources/corn_seeds.tres" id="10_2cqfq"]
 [ext_resource type="Resource" uid="uid://dwr6g4kl63448" path="res://Resources/player_inventory.tres" id="10_dg77c"]
 [ext_resource type="Script" uid="uid://dic46ofoe7e2v" path="res://Scripts/inventory_gui.gd" id="13_w48qg"]
 [ext_resource type="Script" uid="uid://cr4qggdim6rxr" path="res://Scripts/loot_range.gd" id="15_vivmo"]
@@ -172,10 +170,10 @@ tile_set = ExtResource("1_h2yge")
 z_index = 1
 y_sort_enabled = true
 position = Vector2(-8, -24)
-tile_map_data = PackedByteArray("AAADAAMAAQACAAIAAAADAAIAAQACAAEAAAADAAEAAQACAAEAAAADAAAAAQACAAEAAAADAP//AQACAAEAAAADAP7/AQACAAEAAAADAP3/AQACAAEAAAADAPz/AQACAAEAAAADAPv/AQACAAAAAAACAAMAAQABAAIAAAACAAIAAQABAAEAAAACAAEAAQABAAEAAAACAAAAAQABAAEAAAACAP//AQABAAEAAAACAP7/AQABAAEAAAACAP3/AQABAAEAAAACAPz/AQABAAEAAAACAPv/AQABAAAAAAABAAMAAQABAAIAAAABAAIAAQABAAEAAAABAAEAAQABAAEAAAABAAAAAQABAAEAAAABAP//AQABAAEAAAABAP7/AQABAAEAAAABAP3/AQABAAEAAAABAPz/AQABAAEAAAABAPv/AQABAAAAAAAAAAMAAQABAAIAAAAAAAIAAQABAAEAAAAAAAEAAQABAAEAAAAAAAAAAQABAAEAAAAAAP//AQABAAEAAAAAAP7/AQABAAEAAAAAAP3/AQABAAEAAAAAAPz/AQABAAEAAAAAAPv/AQABAAAAAAD//wMAAQABAAEAAAD//wIAAQABAAEAAAD//wEAAQABAAEAAAD//wAAAQABAAEAAAD/////AQABAAEAAAD///7/AQABAAEAAAD///3/AQABAAEAAAD///z/AQABAAEAAAD///v/AQABAAAAAAD+/wMAAQABAAIAAAD+/wIAAQABAAEAAAD+/wEAAQABAAEAAAD+/wAAAQABAAEAAAD+////AQABAAEAAAD+//7/AQABAAEAAAD+//3/AQABAAEAAAD+//z/AQABAAEAAAD+//v/AQABAAAAAAD9/wMAAQABAAIAAAD9/wIAAQABAAEAAAD9/wEAAQABAAEAAAD9/wAAAQABAAEAAAD9////AQABAAEAAAD9//7/AQABAAEAAAD9//3/AQABAAEAAAD9//z/AQABAAEAAAD9//v/AQABAAAAAAD8/wMAAQABAAIAAAD8/wIAAQABAAEAAAD8/wEAAQABAAEAAAD8/wAAAQABAAEAAAD8////AQABAAEAAAD8//7/AQABAAEAAAD8//3/AQABAAEAAAD8//z/AQABAAEAAAD8//v/AQABAAAAAAD7/wMAAQAAAAIAAAD7/wIAAQAAAAEAAAD7/wEAAQAAAAEAAAD7/wAAAQAAAAEAAAD7////AQAAAAEAAAD7//7/AQAAAAEAAAD7//3/AQAAAAEAAAD7//z/AQAAAAEAAAD7//v/AQAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAADAAMAAQACAAIAAAADAAIAAQACAAEAAAADAAEAAQACAAEAAAADAAAAAQACAAEAAAADAP//AQACAAEAAAADAP7/AQACAAEAAAADAP3/AQACAAEAAAADAPz/AQACAAEAAAADAPv/AQACAAAAAAACAAMAAQABAAIAAAACAAIAAQABAAEAAAACAAEAAQABAAEAAAACAAAAAQABAAEAAAACAP//AQABAAEAAAACAP7/AQABAAEAAAACAP3/AQABAAEAAAACAPz/AQABAAEAAAACAPv/AQABAAAAAAABAAMAAQABAAIAAAABAAIAAQABAAEAAAABAAEAAQABAAEAAAABAAAAAQABAAEAAAABAP//AQABAAEAAAABAP7/AQABAAEAAAABAP3/AQABAAEAAAABAPz/AQABAAEAAAABAPv/AQABAAAAAAAAAAMAAQABAAIAAAAAAAIAAQABAAEAAAAAAAEAAQABAAEAAAAAAAAAAQABAAEAAAAAAP//AQABAAEAAAAAAP7/AQABAAEAAAAAAP3/AQABAAEAAAAAAPz/AQABAAEAAAAAAPv/AQABAAAAAAD//wMAAQABAAEAAAD//wIAAQABAAEAAAD//wEAAQABAAEAAAD//wAAAQABAAEAAAD/////AQABAAEAAAD///7/AQABAAEAAAD///3/AQABAAEAAAD///z/AQABAAEAAAD///v/AQABAAAAAAD+/wMAAQABAAIAAAD+/wIAAQABAAEAAAD+/wEAAQABAAEAAAD+/wAAAQABAAEAAAD+//3/AQABAAEAAAD+//z/AQABAAEAAAD+//v/AQABAAAAAAD9/wMAAQABAAIAAAD9/wIAAQABAAEAAAD9/wEAAQABAAEAAAD9/wAAAQABAAEAAAD9////AQABAAEAAAD9//7/AQABAAEAAAD9//3/AQABAAEAAAD9//z/AQABAAEAAAD9//v/AQABAAAAAAD8/wMAAQABAAIAAAD8/wIAAQABAAEAAAD8/wEAAQABAAEAAAD8/wAAAQABAAEAAAD8////AQABAAEAAAD8//7/AQABAAEAAAD8//3/AQABAAEAAAD8//z/AQABAAEAAAD8//v/AQABAAAAAAD7/wMAAQAAAAIAAAD7/wIAAQAAAAEAAAD7/wEAAQAAAAEAAAD7/wAAAQAAAAEAAAD7////AQAAAAEAAAD7//7/AQAAAAEAAAD7//3/AQAAAAEAAAD7//z/AQAAAAEAAAD7//v/AQAAAAAAAAD+//7/AQABAAEAAAD+////AQABAAEAAAA=")
 tile_set = ExtResource("1_h2yge")
 
-[node name="Door" type="StaticBody2D" parent="Tilemap/Objects"]
+[node name="Door" type="Area2D" parent="Tilemap/Objects"]
 y_sort_enabled = true
 position = Vector2(-8, 56)
 script = ExtResource("4_lquwl")
@@ -195,7 +193,6 @@ position = Vector2(-112, 32)
 input_pickable = true
 script = ExtResource("7_4c57u")
 sprite = NodePath("Sprite2D")
-test_seed_to_plant = ExtResource("8_efxa6")
 
 [node name="Sprite2D" type="Sprite2D" parent="Tilemap/Objects/Plot"]
 
@@ -203,7 +200,6 @@ test_seed_to_plant = ExtResource("8_efxa6")
 shape = SubResource("RectangleShape2D_efxa6")
 
 [node name="LootableItem" parent="Tilemap/Objects" instance=ExtResource("9_vivmo")]
-item = ExtResource("10_2cqfq")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 unique_name_in_owner = true
@@ -254,7 +250,7 @@ libraries = {
 &"player": SubResource("AnimationLibrary_kek77")
 }
 
-[node name="LootRange" type="Area2D" parent="Player" node_paths=PackedStringArray("player", "attraction_range", "pickup_range")]
+[node name="LootRange" type="Area2D" parent="Player"]
 position = Vector2(0, -8)
 collision_layer = 2
 collision_mask = 4
@@ -263,9 +259,6 @@ gravity_point = true
 gravity_point_center = Vector2(0, 0)
 gravity_direction = Vector2(0, 0)
 script = ExtResource("15_vivmo")
-player = NodePath("..")
-attraction_range = NodePath("AttractionRange")
-pickup_range = NodePath("PickupRange")
 
 [node name="AttractionRange" type="CollisionShape2D" parent="Player/LootRange"]
 shape = SubResource("CircleShape2D_w48qg")
