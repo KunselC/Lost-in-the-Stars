@@ -1,0 +1,17 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+/Assets/Cursors/PNG/**
+/Assets/Cursors/Vector/Basic/**
+
+# Godot-specific ignores
+.import/
+*.translation
+*.translation.remap
+*.remap
+project.godot.translation
+
+# Mono-specific ignores
+.mono/
+bin/
+obj/
