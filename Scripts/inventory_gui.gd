@@ -14,8 +14,23 @@ func _ready():
         add_child(item_slot)
         item_slot.item_selected.connect(player.equip_item)
 
+# ADD THIS ENTIRE FUNCTION
+func _input(event: InputEvent):
+    for i in range(0, 9):
+        if event.is_action_pressed("select_item_%d" % (i + 1)):
+            select_slot(i)
+
 func find_first_empty(item_slot: ItemSlot):
     return item_slot.item == null
+
+func select_slot(index: int):
+    for slot in item_slots:
+        slot.set_selected(false)
+
+    if index < item_slots.size():
+        # ADD THIS LINE to show the highlight on the selected slot.
+        item_slots[index].set_selected(true)
+        player.equip_item(item_slots[index].item)
 
 func handle_item_added(item):
     # find first available empty slot

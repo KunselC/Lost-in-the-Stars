@@ -65,12 +65,10 @@ func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int):
             harvest()
             Input.set_custom_mouse_cursor(Global.RESOURCES.CURSOR.DEFAULT)
         elif not is_planted:
-            # Find the player node.
             var player: Player = get_tree().get_first_node_in_group("player")
             if player and player.equipped_item:
-                # Attempt to plant the player's equipped item.
                 if plant(player.equipped_item):
-                    # If planting was successful, remove one item from the inventory.
+                    # ADD THIS LINE to remove the seed after planting.
                     player.inventory.remove_item(player.equipped_item)
 
 

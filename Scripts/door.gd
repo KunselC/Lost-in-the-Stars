@@ -5,17 +5,18 @@ extends Area2D
 
 # MODIFIED: Renamed function to match the signal from the "Door" node.
 func _on_Door_body_entered(body):
-	# Only interact with the Player node.
-	if body is Player:
-		animated_sprite_2d.play()
-		if body.has_method("stop_animations"):
-			body.stop_animations()
+    # Only interact with the Player node.
+    if body is Player:
+        animated_sprite_2d.play()
+        if body.has_method("stop_animations"):
+            body.stop_animations()
 
 
 # MODIFIED: Renamed function to match the signal from the "Door" node.
 func _on_Door_body_exited(body):
-	# Only interact with the Player node.
-	if body is Player:
-		animated_sprite_2d.play_backwards()
-		if body.has_method("start_animations"):
-			body.start_animations()
+    # Only interact with the Player node.
+    if body is Player:
+        animated_sprite_2d.play_backwards()
+        # ADDED: This line was missing.
+        if body.has_method("start_animations"):
+            body.start_animations()

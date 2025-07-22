@@ -1,13 +1,11 @@
-[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://dntq8whvbow6p"]
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://tfy716bx6orl"]
 
 [ext_resource type="Script" uid="uid://d4iy62djfx8sj" path="res://Scripts/item_resource.gd" id="1_kr3yg"]
 [ext_resource type="Resource" uid="uid://bj5o26048hbxw" path="res://Resources/corn_crop.tres" id="2_pufl2"]
-[ext_resource type="Texture2D" uid="uid://c5aq4cjuquwwn" path="res://Resources/seed_bag_texture.tres" id="3_c0x2b"]
 
 [resource]
 script = ExtResource("1_kr3yg")
 name = "Seeds (Corn)"
-texture = ExtResource("3_c0x2b")
 stackable = true
 seed_grows_into = ExtResource("2_pufl2")
 metadata/_custom_type_script = "uid://d4iy62djfx8sj"
